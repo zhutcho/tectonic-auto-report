@@ -1,0 +1,14 @@
+{
+  "parserOptions": {
+    "project": "tsconfig.json",
+    "tsconfigRootDir": "./Auto Report",
+    "sourceType": "module"
+  },
+
+  "plugins": [
+    "office-addins"
+  ],
+  "extends": [
+    "plugin:office-addins/react"
+  ]
+}
