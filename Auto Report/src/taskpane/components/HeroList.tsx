@@ -4,18 +4,29 @@ import * as React from "react";
 export interface Section {
   header: string;
   text: string;
-  included: boolean;
 }
 
 export interface HeroListProps {
   sections: Section[];
+  parentState: any;
+  stateChanger: any;
 }
 
 function HeroList(props: React.PropsWithChildren<HeroListProps>) {
-  const { children, sections } = props;
+  const { children, sections, parentState, stateChanger } = props;
+
+  const changeState = (index: number) => {
+    return (ev: any, checked: boolean) => onCheckboxChange(ev, checked, index);
+  };
+  const onCheckboxChange = (ev: any, checked: boolean, index: number) => {
+    console.log(ev);
+    let updatedState = parentState;
+    updatedState[index] = checked;
+    stateChanger(updatedState);
+  };
 
   const listSections = sections.map((item: Section, index: number) => (
-    <Checkbox className="ms-ListItem" label={item.header} key={index} />
+    <Checkbox className="ms-ListItem" label={item.header} key={index} onChange={changeState(index)} />
   ));
   return (
     <main>
